@@ -13,11 +13,11 @@ import java.util.List;
 public class ToExcel {
     public static void main(String[] args) throws IOException {
         Workbook wb = new HSSFWorkbook();
-        FileOutputStream fout=new FileOutputStream("C:\\Users\\DELL\\Desktop\\test\\test.xls");
+        FileOutputStream fout = new FileOutputStream("test.xls");
         Sheet sheet1 = wb.createSheet();
         List<Item> li = Reptile.getInfo("China");
         int rowCnt = 1;
-        for(Item x:li){
+        for (Item x : li) {
             Row row = sheet1.createRow(rowCnt++);
             row.createCell(0).setCellValue(x.getTitle());
             row.createCell(1).setCellValue(x.getInfo());

@@ -21,24 +21,28 @@ public class Item {
         return info;
     }
 
-    public String getUrl(){
+    public String getUrl() {
         return url;
     }
+
     private String url;
     private String title;
     private String info;
-    public Item(){
+
+    public Item() {
         this.url = "";
         this.title = "";
         this.info = "";
     }
+
     public Item(String url, String title, String info) {
         this.url = url;
         this.title = title;
         this.info = info;
     }
+
     @Override
-    public String toString(){
-        return title+","+info+","+url;
+    public String toString() {
+        return title + "," + info + "," + url;
     }
 }
