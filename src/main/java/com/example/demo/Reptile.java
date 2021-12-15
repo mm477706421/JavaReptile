@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class Reptile {
     public static List<Item> getItem(String name,Boolean isProxy) throws IOException {
-
         List<Item> ret = new ArrayList<Item>();
         String url = "https://search.jd.com/Search?keyword=" + name;
         Connection.Response rs = getResponse(url,isProxy);

@@ -7,7 +7,9 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
+
 import java.awt.Desktop;
+
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -40,14 +42,13 @@ public class Controller {
 
     @FXML
     void ImageClick(MouseEvent event) {
-        try{
+        try {
             String url = tableView.getSelectionModel().getSelectedItem().getHref();
             Desktop dp = Desktop.getDesktop();
-            if(dp.isSupported(Desktop.Action.BROWSE)){
-                dp.browse(URI.create("https:"+url));
+            if (dp.isSupported(Desktop.Action.BROWSE)) {
+                dp.browse(URI.create("https:" + url));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
