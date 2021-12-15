@@ -3,9 +3,11 @@ package com.example.demo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
+import java.awt.Desktop;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -13,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 public class Controller {
@@ -37,12 +40,24 @@ public class Controller {
 
     @FXML
     void ImageClick(MouseEvent event) {
-        ;
+        try{
+            String url = tableView.getSelectionModel().getSelectedItem().getHref();
+            Desktop dp = Desktop.getDesktop();
+            if(dp.isSupported(Desktop.Action.BROWSE)){
+                dp.browse(URI.create("https:"+url));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void tableSelected(MouseEvent event) {
-        imageView.setImage(new Image(tableView.getSelectionModel().getSelectedItem().getImgUrl()));
+        String url = tableView.getSelectionModel().getSelectedItem().getImgUrl();
+        imageView.setImage(new Image(url));
+        Hyperlink link = new Hyperlink();
+        link.setGraphic(imageView);
     }
 
     @FXML
