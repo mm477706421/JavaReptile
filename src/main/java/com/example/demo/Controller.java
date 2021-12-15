@@ -8,6 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +33,19 @@ public class Controller {
     private TableColumn<JDItem, String> tableViewTitle;
 
     @FXML
+    private ImageView imageView;
+
+    @FXML
+    void ImageClick(MouseEvent event) {
+        ;
+    }
+
+    @FXML
+    void tableSelected(MouseEvent event) {
+        imageView.setImage(new Image(tableView.getSelectionModel().getSelectedItem().getImgUrl()));
+    }
+
+    @FXML
     void SearchBtnClick(ActionEvent event) {
 
         tableViewTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -37,18 +53,13 @@ public class Controller {
         tableViewHref.setCellValueFactory(new PropertyValueFactory<>("href"));
         String content = Content.getText();
         System.out.println(content);
-        try{
+        try {
             int cnt = 0;
-            List<Item> result = Reptile.getItem(content,Boolean.FALSE);
+            List<Item> result = Reptile.getItem(content, Boolean.FALSE);
             List<JDItem> resultJD = JDItem.convert(result);
             ObservableList<JDItem> data = FXCollections.observableList(resultJD);
-            for(JDItem it : resultJD){
-                System.out.println(it);
-                //tableView.getItems().add();
-            }
             tableView.setItems(data);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
     }

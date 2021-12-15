@@ -50,11 +50,23 @@ public class JDItem extends Item {
     private SimpleDoubleProperty price;
     private SimpleStringProperty href;
 
+    public String getImgUrl() {
+        return imgUrl.get();
+    }
+
+    public SimpleStringProperty imgUrlProperty() {
+        return imgUrl;
+    }
+
+
+    private SimpleStringProperty imgUrl;
+
     public JDItem() {
         super();
         this.title = new SimpleStringProperty();
         this.price = new SimpleDoubleProperty();
         this.href = new SimpleStringProperty();
+        this.imgUrl = new SimpleStringProperty();
     }
 
     public JDItem(Map<String, String> info) {
@@ -62,6 +74,7 @@ public class JDItem extends Item {
         this.title = new SimpleStringProperty();
         this.price = new SimpleDoubleProperty();
         this.href = new SimpleStringProperty();
+        this.imgUrl = new SimpleStringProperty();
         this.title.set(info.get("title"));
         this.price.set(Double.parseDouble(info.get("price")));
         this.href.set(info.get("href"));
@@ -74,6 +87,7 @@ public class JDItem extends Item {
             this.title = new SimpleStringProperty();
             this.price = new SimpleDoubleProperty();
             this.href = new SimpleStringProperty();
+            this.imgUrl = new SimpleStringProperty();
             this.title.set(title);
             this.price.set(price);
             this.href.set(href);
@@ -86,6 +100,7 @@ public class JDItem extends Item {
         List<JDItem> ret = new ArrayList<>();
         for (Item x : li) {
             JDItem jdt = new JDItem(x.getInfo().get("title"), Double.parseDouble(x.getInfo().get("price")), x.getInfo().get("href"));
+            jdt.imgUrl.set(x.getInfo().get("imgUrl"));
             ret.add(jdt);
         }
         return ret;
